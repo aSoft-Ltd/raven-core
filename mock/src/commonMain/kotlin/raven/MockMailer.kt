@@ -7,7 +7,7 @@ import koncurrent.later.await
 import kotlinx.coroutines.delay
 import kotlin.math.max
 
-class MockMailer(val config: MockMailerConfig = MockMailerConfig()) : Mailer {
+class MockMailer(val config: MockMailerOptions = MockMailerOptions()) : Mailer {
     private fun AddressInfo.toDetailsString() = if (name == null) email.value else "$name <${email.value}>"
 
     val outbox: MutableMap<String, MutableList<EmailMessage>> = mutableMapOf()

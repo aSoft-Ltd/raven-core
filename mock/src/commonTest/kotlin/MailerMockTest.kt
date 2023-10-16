@@ -1,7 +1,6 @@
 import kommander.expect
 import identifier.Email
 import kollections.iListOf
-import kommander.expect
 import koncurrent.later.await
 import kotlinx.coroutines.test.runTest
 import raven.AddressInfo
@@ -9,11 +8,11 @@ import raven.EmailDraft
 import raven.EmailMessage
 import raven.MockAttachment
 import raven.MockMailer
-import raven.MockMailerConfig
+import raven.MockMailerOptions
 import kotlin.test.Test
 
 class MailerMockTest {
-    val config = MockMailerConfig(
+    val config = MockMailerOptions(
         simulationTime = 1000L,
         separator = "="
     )
@@ -51,7 +50,7 @@ class MailerMockTest {
 
     @Test
     fun should_look_good_even_on_the_console() = runTest {
-        val cfg = MockMailerConfig(charsPerLine = 55)
+        val cfg = MockMailerOptions(charsPerLine = 55)
         val m = MockMailer(cfg)
         val draft = EmailDraft(
             subject = "Look good while doing it",
@@ -72,7 +71,7 @@ class MailerMockTest {
 
     @Test
     fun should_find_sent_email_in_the_outbox() = runTest {
-        val cfg = MockMailerConfig(charsPerLine = 55)
+        val cfg = MockMailerOptions(charsPerLine = 55)
         val m = MockMailer(cfg)
         val draft = EmailDraft(
             subject = "Look good while doing it",
@@ -95,7 +94,7 @@ class MailerMockTest {
 
     @Test
     fun should_print_multiple_recipients_properly() = runTest {
-        val cfg = MockMailerConfig(charsPerLine = 55)
+        val cfg = MockMailerOptions(charsPerLine = 55)
         val m = MockMailer(cfg)
         val draft = EmailDraft(
             subject = "Look good while doing it",

@@ -6,9 +6,8 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
-import kotlin.jvm.JvmSynthetic
 
-interface MockMailerConfig {
+interface MockMailerOptions {
     val printToConsole: Boolean
     val separator: String
     val simulationTime: Long
@@ -64,7 +63,7 @@ interface MockMailerConfig {
             paddingWidth: String = DEFAULT_PADDING_WIDTH,
             scope: CoroutineScope = DEFAULT_SCOPE,
             box: MailBox = DEFAULT_MAIL_BOX
-        ) = object : MockMailerConfig {
+        ) = object : MockMailerOptions {
             override val printToConsole = printToConsole
             override val simulationTime = simulationTime
             override val separator = separator
