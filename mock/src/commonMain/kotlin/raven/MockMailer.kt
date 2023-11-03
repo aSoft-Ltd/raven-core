@@ -7,6 +7,7 @@ import koncurrent.later.await
 import kotlinx.coroutines.delay
 import kotlin.math.max
 
+@Deprecated("do not use this, either use BusEmailReceiver or ConsoleMailSender")
 class MockMailer(val config: MockMailerOptions = MockMailerOptions()) : Mailer {
     private fun AddressInfo.toDetailsString() = if (name == null) email.value else "$name <${email.value}>"
 

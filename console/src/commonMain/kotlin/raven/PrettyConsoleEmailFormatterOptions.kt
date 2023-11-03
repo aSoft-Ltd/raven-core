@@ -1,6 +1,6 @@
 package raven
 
-class PrettyConsoleFormatterOptions(
+class PrettyConsoleEmailFormatterOptions(
     val separator: String = "=",
     /**
      * It looks better when this value is an odd number

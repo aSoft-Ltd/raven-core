@@ -11,7 +11,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.ravenApi)
+                api(projects.ravenConsole)
                 api(libs.sanity.core)
                 api(kotlinx.serialization.json)
                 api(libs.koncurrent.later.core)

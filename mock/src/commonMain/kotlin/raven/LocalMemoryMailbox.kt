@@ -3,6 +3,7 @@ package raven
 import koncurrent.Later
 import koncurrent.LaterPromise
 
+@Deprecated("use BusMailBoxReceiver instead")
 class LocalMemoryMailbox : MailBox {
     private val messages = mutableListOf<EmailMessage>()
 

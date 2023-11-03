@@ -2,9 +2,9 @@ package raven
 
 import koncurrent.toLater
 
-class ConsoleEmailSender(private val config: ConsoleEmailFormatter = PrettyConsoleEmailFormatter()) : EmailSender {
+class ConsoleEmailSender(private val options: ConsoleEmailSenderOptions = ConsoleEmailSenderOptions()) : EmailSender {
 
-    override fun send(params: SendEmailParams) = params.toLater().complete { println(config.format(params)) }
+    override fun send(params: SendEmailParams) = params.toLater().complete { println(options.formatter.format(params)) }
 
     override fun toString(): String = "ConsoleEmailSender"
 }

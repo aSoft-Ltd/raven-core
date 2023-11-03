@@ -2,7 +2,7 @@ package raven
 
 import kotlin.math.max
 
-class PrettyConsoleEmailFormatter(private val options: PrettyConsoleFormatterOptions = PrettyConsoleFormatterOptions()) : ConsoleEmailFormatter {
+class PrettyConsoleEmailFormatter(private val options: PrettyConsoleEmailFormatterOptions = PrettyConsoleEmailFormatterOptions()) : ConsoleEmailFormatter {
     override fun format(params: SendEmailParams): String {
         val separator = "${options.separator} ".repeat(3) + options.separator
         val output = buildString {
