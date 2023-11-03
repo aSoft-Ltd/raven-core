@@ -7,6 +7,7 @@ import kollections.List
 import kollections.iListOf
 import kotlin.js.JsExport
 
+@Deprecated("use MailMessageInstead")
 data class EmailMessage(
     val subject: String,
     val from: AddressInfo,

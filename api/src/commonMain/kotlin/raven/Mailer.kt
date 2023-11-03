@@ -8,6 +8,7 @@ import kollections.iListOf
 /**
  * An interface to be used to send emails
  */
+@Deprecated("use EmailSender instead")
 interface Mailer {
     fun send(draft: EmailDraft, from: AddressInfo, to: List<AddressInfo>): Later<EmailMessage>
 

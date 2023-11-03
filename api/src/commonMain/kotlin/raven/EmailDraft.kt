@@ -6,6 +6,7 @@ package raven
 import kollections.List
 import kollections.iListOf
 import kotlin.js.JsExport
+@Deprecated("use SendEmailParams instead together with EmailSender instead of Mailer")
 data class EmailDraft(
     val subject: String,
     val body: String,

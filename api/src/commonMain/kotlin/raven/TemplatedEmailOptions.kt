@@ -1,7 +1,7 @@
 package raven
 
 class TemplatedEmailOptions(
-    val address: AddressInfo,
+    val address: Address,
     val subject: String,
     val template: String
 )

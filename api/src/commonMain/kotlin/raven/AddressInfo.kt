@@ -3,6 +3,7 @@ package raven
 import identifier.Email
 import kotlinx.serialization.Serializable
 
+@Deprecated("Use Address instead")
 @Serializable
 data class AddressInfo(
     val email: Email,
