@@ -3,15 +3,11 @@ package raven
 import koncurrent.Later
 import koncurrent.toLater
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import sanity.EventBus
-import sanity.EventDispatcher
 
-class BusEmailSender(private val options: BusEmailSenderOptions) : EmailSender {
-
-    private val topic = BusEmailTopic()
+class BusEmailSender(private val options: BusEmailOptions) : EmailSender {
     override fun send(params: SendEmailParams): Later<SendEmailParams> {
-        options.bus.dispatch(topic.emailSent(), Json.encodeToString<SendEmailParams>(params))
+        val topic = options.topic.emailSent()
+        options.bus.dispatch(topic, options.codec.encodeToString<SendEmailParams>(params))
         return params.toLater()
     }
 }

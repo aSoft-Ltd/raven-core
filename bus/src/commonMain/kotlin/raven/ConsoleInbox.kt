@@ -1,15 +1,15 @@
 package raven
 
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import sanity.EventBus
 
 fun setUpConsoleInbox(
-    bus: EventBus,
+    options: BusEmailOptions,
     formatter: PrettyConsoleEmailFormatter = PrettyConsoleEmailFormatter()
 ) {
-    val topic = BusEmailTopic()
-    bus.subscribe(topic.emailSent()) {
-        val params = Json.decodeFromString<SendEmailParams>(it.data as String)
+    options.bus.subscribe(options.topic.emailSent()) {
+        val params = options.codec.decodeFromString<SendEmailParams>(it.data as String)
         println(formatter.format(params))
     }
 }
