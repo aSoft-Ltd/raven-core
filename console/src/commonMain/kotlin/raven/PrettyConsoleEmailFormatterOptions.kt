@@ -5,8 +5,8 @@ class PrettyConsoleEmailFormatterOptions(
     /**
      * It looks better when this value is an odd number
      */
-    val charsPerLine: Int = 55,
-    val marginWidth: String = "\t".repeat(6),
+    val width: Int = 95,
+    val margin: Int = 24,
     val border: String = "|",
-    val paddingWidth: String = " ",
+    val padding: Int = 1,
 )

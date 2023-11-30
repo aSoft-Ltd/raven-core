@@ -3,6 +3,9 @@ package raven
 import kotlin.math.max
 
 class PrettyConsoleEmailFormatter(private val options: PrettyConsoleEmailFormatterOptions = PrettyConsoleEmailFormatterOptions()) : ConsoleEmailFormatter {
+
+    private val margin = " ".repeat(options.margin)
+    private val padding = " ".repeat(options.padding)
     override fun format(params: SendEmailParams): String {
         val separator = "${options.separator} ".repeat(3) + options.separator
         val output = buildString {
@@ -19,9 +22,9 @@ class PrettyConsoleEmailFormatter(private val options: PrettyConsoleEmailFormatt
             append(separator)
         }
         val outLines = output.split("\n")
-        val width = max(outLines.maxOf { it.length }, options.charsPerLine)
+        val width = max(outLines.maxOf { it.length }, options.width)
         val adjustedLines = outLines.joinToString(separator = "\n") {
-            "${options.marginWidth}${options.border}${options.paddingWidth}" +
+            "${margin}${options.border}${padding}" +
                     if (it == separator) {
                         if (width.mod(2) == 0) {
                             val multiples = width / 2
@@ -34,7 +37,7 @@ class PrettyConsoleEmailFormatter(private val options: PrettyConsoleEmailFormatt
                     } else {
                         "$it${" ".repeat(width - it.length)}"
                     } +
-                    "${options.paddingWidth}${options.border}"
+                    "${padding}${options.border}"
         }
         return adjustedLines
     }
@@ -55,6 +58,6 @@ class PrettyConsoleEmailFormatter(private val options: PrettyConsoleEmailFormatt
 
     private fun Address.toDetailsString() = if (name == null) email else "$name <${email}>"
     private fun StringBuilder.appendMultiLines(body: String) = body.split("\n").flatMap {
-        it.chunked(options.charsPerLine)
+        it.chunked(options.width)
     }.forEach { appendLine(it) }
 }
