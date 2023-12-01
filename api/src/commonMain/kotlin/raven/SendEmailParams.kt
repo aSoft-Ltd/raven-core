@@ -11,6 +11,7 @@ data class SendEmailParams(
     val cc: List<Address>,
     val bcc: List<Address>,
     val body: String,
+    val type: EmailContentType = EmailContentType.html,
     @Transient
     val attachments: List<EmailAttachment<Any?>> = emptyList(),
 )

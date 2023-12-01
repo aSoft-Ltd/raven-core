@@ -4,5 +4,6 @@ package raven
 
 external interface ConsoleInboxConfiguration {
     var enable: Boolean?
-    var charsPerLine: Int?
+    var width: Int?
+    var margin: Int?
 }

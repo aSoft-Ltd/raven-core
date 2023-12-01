@@ -1,14 +1,27 @@
 package raven
 
+import kase.Failure
 import koncurrent.Later
 import koncurrent.Laters
 import koncurrent.toLater
 
-class MultiEmailSender(private val mailers: List<EmailSender>) : EmailSender {
+class MultiEmailSender(private val senders: List<EmailSender>) : EmailSender {
 
-    override fun send(params: SendEmailParams): Later<SendEmailParams> = Laters(*mailers.map {
+    override fun supports(body: EmailContentType) = senders.any { it.supports(body) }
+    override fun send(params: SendEmailParams): Later<SendEmailParams> = Laters(*senders.map {
         it.send(params)
     }.toTypedArray()).andThen {
-        params.toLater()
+        val failures = it.filterIsInstance<Failure<SendEmailParams>>()
+        if (failures.isEmpty()) {
+            params.toLater()
+        } else {
+            throw failures.toCause()
+        }
+    }
+
+    private fun Collection<Failure<SendEmailParams>>.toMessage() = joinToString("\n") { it.message }
+
+    private fun Collection<Failure<SendEmailParams>>.toCause() = RuntimeException("Failed to send email").apply {
+        forEach { addSuppressed(it.cause) }
     }
 }
