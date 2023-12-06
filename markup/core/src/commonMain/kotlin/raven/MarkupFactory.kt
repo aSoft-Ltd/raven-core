@@ -21,7 +21,7 @@ fun markup(builder: MarkupFactory.() -> Unit): EmailMarkup {
     return EmailMarkup(factory.root ?: notBuiltYet("html"))
 }
 
-fun bodyMarkup(style: Styles = css(), builder: BodyScope.() -> Unit) = markup {
+fun bodyMarkup(style: Styles = css(), builder: ComponentScope<Body>.() -> Unit) = markup {
     html {
         head {
             contentType()

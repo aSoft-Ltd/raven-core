@@ -1,14 +1,14 @@
 import kotlin.test.Test
-import raven.BodyScope
+import raven.Body
+import raven.ComponentScope
 import raven.Container
-import raven.FertileComponentScope
 import raven.bodyMarkup
 import raven.css
 import raven.toHtmlFile
 
 class CanRenderHtmlOutputProperly {
 
-    fun BodyScope.ReceptionistBarner(
+    fun ComponentScope<Body>.ReceptionistBarner(
         background: String,
         foreground: String,
         logo: String,
@@ -36,7 +36,7 @@ class CanRenderHtmlOutputProperly {
         }
     }
 
-    fun BodyScope.ReceptionlessBarner(
+    fun ComponentScope<Body>.ReceptionlessBarner(
         background: String,
         foreground: String,
         logo: String,
@@ -54,7 +54,7 @@ class CanRenderHtmlOutputProperly {
     }
 
 
-    fun FertileComponentScope<Container>.VerificationMeatContent(
+    fun ComponentScope<Container>.VerificationMeatContent(
         brand: String,
         background: String,
         foreground: String,
@@ -82,7 +82,7 @@ class CanRenderHtmlOutputProperly {
         }
     }
 
-    fun BodyScope.ReceptionistVerificationMeat(
+    fun ComponentScope<Body>.ReceptionistVerificationMeat(
         brand: String,
         label: String,
         background: String,
@@ -98,7 +98,7 @@ class CanRenderHtmlOutputProperly {
         VerificationMeatContent(brand, background, foreground, link, token)
     }
 
-    fun BodyScope.ReceptionlessVerificationMeat(
+    fun ComponentScope<Body>.ReceptionlessVerificationMeat(
         brand: String,
         name: String,
         background: String,
@@ -110,7 +110,7 @@ class CanRenderHtmlOutputProperly {
         VerificationMeatContent(brand, background, foreground, link, token)
     }
 
-    fun BodyScope.Footer(
+    fun ComponentScope<Body>.Footer(
         brand: String,
         background: String,
         address: String,

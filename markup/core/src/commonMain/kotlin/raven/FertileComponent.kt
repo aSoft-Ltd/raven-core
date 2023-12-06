@@ -13,7 +13,7 @@ private val defaultContainerProps = mapOf(
     "role" to "presentation"
 )
 
-interface FertileComponentScope<out C : FertileComponent> : ComponentScope {
+interface ComponentScope<out C : FertileComponent> {
     val parent: C
     val css get() = css()
     val center get() = css.text(align = "center")
@@ -28,7 +28,7 @@ interface FertileComponentScope<out C : FertileComponent> : ComponentScope {
         parent.children.add(Text((default + style).definitions, builder()))
     }
 
-    fun p(style: Styles = css(), builder: FertileComponentScope<Paragraph>.() -> Unit) {
+    fun p(style: Styles = css(), builder: ComponentScope<Paragraph>.() -> Unit) {
         val default = css().margin(top = "16px")
         val p = Paragraph((default + style).definitions, mutableListOf())
         parent.children.add(scopeOf(p).also(builder).parent)
@@ -50,7 +50,7 @@ interface FertileComponentScope<out C : FertileComponent> : ComponentScope {
         parent.children.add(i)
     }
 
-    fun a(href: String, target: String = "_blank", style: Styles = css(), builder: FertileComponentScope<Link>.() -> Unit) {
+    fun a(href: String, target: String = "_blank", style: Styles = css(), builder: ComponentScope<Link>.() -> Unit) {
         val props = mapOf("href" to href, "target" to target)
         val default = css().text(decoration = "none")
         val l = Link(props, (default + style).definitions, mutableListOf())
@@ -72,7 +72,7 @@ interface FertileComponentScope<out C : FertileComponent> : ComponentScope {
     fun button(
         style: Styles = css(),
         href: String,
-        builder: FertileComponentScope<Button>.() -> Unit
+        builder: ComponentScope<Button>.() -> Unit
     ) {
         val props = mapOf("href" to href)
         val s = css()
@@ -88,17 +88,17 @@ interface FertileComponentScope<out C : FertileComponent> : ComponentScope {
 
     fun br() = parent.children.add(Break)
 
-    fun container(style: Styles = css(), builder: FertileComponentScope<Container>.() -> Unit) {
+    fun container(style: Styles = css(), builder: ComponentScope<Container>.() -> Unit) {
         val c = Container(defaultContainerProps, style.definitions, mutableListOf())
         parent.children.add(scopeOf(c).also(builder).parent)
     }
 
-    fun row(style: Styles = css(), builder: FertileComponentScope<Row>.() -> Unit) {
+    fun row(style: Styles = css(), builder: ComponentScope<Row>.() -> Unit) {
         val r = Row(defaultContainerProps, style.definitions, mutableListOf())
         parent.children.add(scopeOf(r).also(builder).parent)
     }
 
-    fun col(style: Styles = css(), builder: FertileComponentScope<Column>.() -> Unit) {
+    fun col(style: Styles = css(), builder: ComponentScope<Column>.() -> Unit) {
         val c = Column(mapOf(), style.definitions, mutableListOf())
         parent.children.add(scopeOf(c).also(builder).parent)
     }

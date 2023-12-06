@@ -16,11 +16,9 @@ class HtmlScope {
         return head
     }
 
-    fun body(styles: Styles = css(), builder: BodyScope.() -> Unit): Body {
+    fun body(styles: Styles = css(), builder: ComponentScope<Body>.() -> Unit): Body {
         val default = css().width("100%").margin("0").padding("0")
         body.styles.putAll((default + styles).definitions)
-        val scope = BodyScope(body)
-        scope.builder()
-        return body
+        return scopeOf(body).also(builder).parent
     }
 }
