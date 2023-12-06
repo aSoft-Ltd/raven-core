@@ -24,3 +24,4 @@ listOf(
 rootProject.name = "raven-core"
 
 includeSubs(base = "raven", path = ".", "api", "console", "mock", "bus")
+includeSubs(base = "raven-markup", path = "markup", "core", "html")
