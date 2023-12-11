@@ -5,7 +5,7 @@ package raven
 
 import kollections.List
 import kollections.iListOf
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import raven.status.EmailStatus
 
 @Deprecated("use MailMessageInstead")

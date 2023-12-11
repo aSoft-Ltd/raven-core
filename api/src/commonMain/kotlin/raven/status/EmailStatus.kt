@@ -4,7 +4,7 @@ package raven.status
 
 import identifier.Email
 import kotlinx.serialization.Serializable
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 @Serializable
 sealed class EmailStatus {
