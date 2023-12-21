@@ -4,13 +4,13 @@
 package raven
 
 import kollections.List
-import kollections.iListOf
+import kollections.listOf
 import kotlinx.JsExport
 @Deprecated("use SendEmailParams instead together with EmailSender instead of Mailer")
 data class EmailDraft(
     val subject: String,
     val body: String,
-    val attachments: List<EmailAttachment<Any?>> = iListOf()
+    val attachments: List<EmailAttachment<Any?>> = listOf()
 ) {
     fun toMessage(
         from: AddressInfo,
@@ -21,6 +21,6 @@ data class EmailDraft(
         to = to,
         body = body,
         attachments = attachments,
-        status = iListOf()
+        status = listOf()
     )
 }

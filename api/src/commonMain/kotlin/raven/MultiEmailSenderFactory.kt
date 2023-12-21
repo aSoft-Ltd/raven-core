@@ -2,6 +2,11 @@ package raven
 
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
+import kollections.mutableListOf
+import kollections.add
+import kollections.addAll
+import kollections.List
+import kollections.isEmpty
 
 class MultiEmailSenderFactory : ReadOnlyProperty<Any?, MultiEmailSender> {
 

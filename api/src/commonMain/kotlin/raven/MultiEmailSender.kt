@@ -4,7 +4,17 @@ import kase.Failure
 import koncurrent.Later
 import koncurrent.Laters
 import koncurrent.toLater
+import kollections.List
+import kollections.Collection
+import kollections.map
+import kollections.toTypedArray
+import kollections.any
 import kase.Result
+import kollections.filterIsInstance
+import kollections.first
+import kollections.forEach
+import kollections.isEmpty
+import kollections.joinToString
 import raven.EmailContentType.html
 import raven.EmailContentType.plain
 

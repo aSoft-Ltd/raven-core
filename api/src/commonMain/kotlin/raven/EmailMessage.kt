@@ -4,7 +4,7 @@
 package raven
 
 import kollections.List
-import kollections.iListOf
+import kollections.listOf
 import kotlinx.JsExport
 import raven.status.EmailStatus
 
@@ -14,6 +14,6 @@ data class EmailMessage(
     val from: AddressInfo,
     val to: List<AddressInfo>,
     val body: String,
-    val attachments: List<EmailAttachment<Any?>> = iListOf(),
+    val attachments: List<EmailAttachment<Any?>> = listOf(),
     val status: List<EmailStatus>
 )
