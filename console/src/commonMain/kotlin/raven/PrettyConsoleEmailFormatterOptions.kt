@@ -1,4 +1,7 @@
+@file:JsExport
 package raven
+
+import kotlinx.JsExport
 
 class PrettyConsoleEmailFormatterOptions(
     val separator: String = "=",

@@ -1,23 +1,14 @@
 package raven
 
 import koncurrent.Later
-import koncurrent.later.then
-import koncurrent.later.andThen
-import koncurrent.later.andZip
-import koncurrent.later.zip
-import koncurrent.later.catch
-import koncurrent.Later
-import koncurrent.later.then
-import koncurrent.later.andThen
-import koncurrent.later.andZip
-import koncurrent.later.zip
-import koncurrent.later.catchPromise
+import koncurrent.PendingLater
+import koncurrent.resolveWith
 
 @Deprecated("use BusMailBoxReceiver instead")
 class LocalMemoryMailbox : MailBox {
     private val messages = mutableListOf<EmailMessage>()
 
-    private val laters = mutableListOf<LaterPromise<String>>()
+    private val laters = mutableListOf<PendingLater<String>>()
 
     override fun save(message: EmailMessage): Later<EmailMessage> {
         messages.add(message)
@@ -27,7 +18,7 @@ class LocalMemoryMailbox : MailBox {
     }
 
     override fun anticipate(): Later<String> {
-        val later = LaterPromise<String>()
+        val later = PendingLater<String>()
         laters.add(later)
         return later
     }
