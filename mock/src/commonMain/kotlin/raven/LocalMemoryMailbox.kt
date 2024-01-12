@@ -8,7 +8,7 @@ import koncurrent.resolveWith
 class LocalMemoryMailbox : MailBox {
     private val messages = mutableListOf<EmailMessage>()
 
-    private val laters = mutableListOf<PendingLater<String>>()
+    private val laters = mutableListOf<Later<String>>()
 
     override fun save(message: EmailMessage): Later<EmailMessage> {
         messages.add(message)
