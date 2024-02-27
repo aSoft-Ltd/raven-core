@@ -23,6 +23,7 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
+                implementation(projects.ravenMock)
                 implementation(libs.kommander.coroutines)
             }
         }
