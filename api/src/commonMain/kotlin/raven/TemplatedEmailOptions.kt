@@ -1,5 +1,5 @@
 package raven
 
-class TemplatedEmailOptions(
-    val factory: (params: FactoryParams) -> SendEmailTemplateParams
+class TemplatedEmailOptions<T>(
+    val factory: (params: FactoryParams, input: T) -> SendEmailTemplateParams
 )
